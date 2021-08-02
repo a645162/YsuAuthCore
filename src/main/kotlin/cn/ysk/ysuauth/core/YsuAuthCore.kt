@@ -1,9 +1,11 @@
+package cn.ysk.ysuauth.core
+
 import com.alibaba.fastjson.JSONObject
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
-class YsuNetLogin {
+class YsuAuthCore {
 
     //初始化状态检查
     private var alreadyCheckedAuthStatus = false
