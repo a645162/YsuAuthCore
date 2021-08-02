@@ -10,12 +10,23 @@ class YsuAuthCore {
     //初始化状态检查
     private var alreadyCheckedAuthStatus = false
 
+    enum class NetworkOperators {
+        Campus_Network,
+        China_Mobile,
+        China_Unicom,
+        China_Telecom
+    }
+
     //    0.校园网 1.中国移动 2.中国联通 3.中国电信
+//    Campus Network
+//    China Mobile
+//    China Unicom
+//    China Telecom
     private val serviceCode = arrayOf(
-            "%e6%a0%a1%e5%9b%ad%e7%bd%91",
-            "%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8",
-            "%e4%b8%ad%e5%9b%bd%e8%81%94%e9%80%9a",
-            "%e4%b8%ad%e5%9b%bd%e7%94%b5%e4%bf%a1"
+        "%e6%a0%a1%e5%9b%ad%e7%bd%91",
+        "%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8",
+        "%e4%b8%ad%e5%9b%bd%e8%81%94%e9%80%9a",
+        "%e4%b8%ad%e5%9b%bd%e7%94%b5%e4%bf%a1"
     )
 
     private val userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) " +
@@ -42,7 +53,18 @@ class YsuAuthCore {
         }
     }
 
-    fun login(user: String, pwd: String, type: Int, code: String?): Pair<Boolean, String> {
+    fun login(user: String, pwd: String, type: NetworkOperators): Pair<Boolean, String> {
+        val type1 = when (type) {
+            NetworkOperators.Campus_Network -> 0
+            NetworkOperators.China_Mobile -> 1
+            NetworkOperators.China_Unicom -> 2
+            NetworkOperators.China_Telecom -> 3
+            else -> 0
+        }
+        return login(user, pwd, type)
+    }
+
+    fun login(user: String, pwd: String, type: Int): Pair<Boolean, String> {
         try {
             val doc: Document = Jsoup.connect("http://auth.ysu.edu.cn").userAgent(userAgent).get()
             this.isAuth = doc.baseUri().toString().indexOf("success.jsp") > -1
@@ -55,7 +77,7 @@ class YsuAuthCore {
 
                 //正则匹配queryString
                 val queryString = Regex("""href='.*?\?(.*?)'""")
-                        .findAll(doc.toString()).toList().flatMap(MatchResult::groupValues)
+                    .findAll(doc.toString()).toList().flatMap(MatchResult::groupValues)
 
                 val connect: Connection = Jsoup.connect(this.url + "login").userAgent(userAgent)
 
@@ -64,7 +86,7 @@ class YsuAuthCore {
                 connect.data("service", serviceCode[type])
                 connect.data("operatorPwd", "")
                 connect.data("operatorUserId", "")
-                connect.data("validcode", code)
+                connect.data("validcode", "")
                 connect.data("passwordEncrypt", "False")
                 connect.data("queryString", queryString[1])
 
@@ -192,8 +214,8 @@ class YsuAuthCore {
 
     fun getUserData(): UserInfo {
         val doc: Document =
-                Jsoup.connect("http://auth.ysu.edu.cn/eportal/InterFace.do?method=getOnlineUserInfo")
-                        .userAgent(userAgent).get()
+            Jsoup.connect("http://auth.ysu.edu.cn/eportal/InterFace.do?method=getOnlineUserInfo")
+                .userAgent(userAgent).get()
 
         return UserInfo(getJson(doc.body().toString()))
     }
