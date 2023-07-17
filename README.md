@@ -1,39 +1,65 @@
-# Ysu Auth Core Kotlin
+# Ysu Auth Core
 
-#### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+Only Simplified Chinese is supported
+as this is an internal script of a Chinese school.
 
-#### 软件架构
-软件架构说明
+因为我已经毕业，无法进行测试，因此项目不再更新！
 
+成品项目请参考
 
-#### 安装教程
+https://github.com/a645162/ysuauth
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## 前言
 
-#### 使用说明
+本脚本参考
+[BeingGod](https://github.com/BeingGod)
+校友的
+[YSU_netLogin](https://github.com/BeingGod/YSU_netLogin)
+项目编写而成，
+而 YSU_netLogin 项目好像是重写
+[oPluss](https://github.com/OYCN)
+的认证脚本。
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+由于**我已经毕业**，去别的学校读书了，这个项目就停止更新了！
 
-#### 参与贡献
+## Python 版本
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+核心代码直接放这里一份！
+YSUNetAuthTools.py
+这个文件便是了！
 
+这个脚本本就是比较Ok了，经过我的改良，应该来说已经非常成熟了！
 
-#### 特技
+### 成品项目
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+https://github.com/a645162/ysuauth
+
+## Kotlin 版本
+
+因为我是在 IDEA 里开发的，而且直接运行是没有问题的，
+但是，我尝试把他放到安卓，会有奇奇怪怪的问题，
+希望后面的同学能够接替我。
+
+Java版，应该是直接可以用Jetbrains的IDE进行转换吧！
+
+这个项目我也就 Achieved 了哦！不管了！
+希望有人 Fork 一个继续开发！
+
+## Problem
+
+目前isCampusNetwork()这个方法绝对有点问题。
+但是大概应该是这样解决了！
+毕竟代码是从Python翻译到Kotlin基本原理应该没啥问题。
+
+## 用到的库
+
+FastJson
+JSoup
+
+# 联系方式
+
+2018级 理学院 应用物理学 孔昊旻
+
+QQ：846155976
+
+E-Mail：a645162@qq.com
